@@ -1,5 +1,6 @@
 import { ConfigModule } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
+import { SessionModule } from '../session/session.module';
 import { TokenModule } from '../token/token.module';
 import { AuthorizationService } from './authorization.service';
 import { Credentials } from './interface/credential.interface';
@@ -9,7 +10,7 @@ describe('AuthorizationService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [ConfigModule.forRoot(), TokenModule],
+      imports: [ConfigModule.forRoot(), TokenModule, SessionModule],
       providers: [AuthorizationService],
     }).compile();
 

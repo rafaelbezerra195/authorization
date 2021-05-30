@@ -3,7 +3,6 @@ import { Credentials } from 'src/authorization/interface/credential.interface';
 import { TokenService } from '../token/token.service';
 import { AuthSession } from './interface/session.interface';
 import { SessionService } from './session.service';
-import * as fs from 'fs';
 import { ConfigModule } from '@nestjs/config';
 
 describe('SessionService', () => {
