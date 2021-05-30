@@ -3,7 +3,6 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { TokenModule } from '../token/token.module';
 import { AuthorizationService } from './authorization.service';
 import { Credentials } from './interface/credential.interface';
-import { Token } from '../token/interface/token.interface';
 
 describe('AuthorizationService', () => {
   let service: AuthorizationService;
