@@ -28,8 +28,8 @@ describe('SessionService', () => {
 
   it('should be created a new session.', () => {
     const credentials: Credentials = {
-      username: 'manager',
-      password: 'manager',
+      username: 'admin',
+      password: 'admin',
     };
     const tokenService = new TokenService();
     const token = tokenService.generate(credentials);
@@ -40,10 +40,10 @@ describe('SessionService', () => {
 
   it('should be push a new session.', () => {
     const session: AuthSession = {
-      username: 'manager',
+      username: 'admin2',
       token: {
-        acessToken: '0',
-        refreshToken: '0',
+        acessToken: '1jh23kj1h23jkh1kj2',
+        refreshToken: '1jh23kj1h23jkh1kj2',
       },
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -57,5 +57,18 @@ describe('SessionService', () => {
         return value.username === session.username;
       }),
     ).toBeTruthy();
+  });
+
+  it('should get a open session', () => {
+    const username = 'admin2';
+    const openSession = service.getSessionByUsername(username);
+    expect(openSession).toBeTruthy();
+  });
+
+  it('should check if date is valid', () => {
+    const date = new Date();
+    date.setMinutes(date.getMinutes() - 15);
+
+    expect(service.dateIsValid(date)).toBeTruthy();
   });
 });

@@ -1,5 +1,6 @@
 import { ConfigModule } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
+import { Token } from '../token/interface/token.interface';
 import { SessionModule } from '../session/session.module';
 import { TokenModule } from '../token/token.module';
 import { AuthorizationService } from './authorization.service';
@@ -51,5 +52,31 @@ describe('AuthorizationService', () => {
 
     const token = service.login(credentials);
     expect(token).toBeTruthy();
+  });
+
+  it('should check if the access token is equal when I do login twice times', () => {
+    const credentials: Credentials = {
+      username: 'manager',
+      password: 'manager',
+    };
+
+    const tokenFirstTime = service.login(credentials);
+    const tokenSecondeTime = service.login(credentials);
+
+    expect(tokenFirstTime).toEqual(tokenSecondeTime);
+  });
+
+  it('should check if token is valid - right acess token', () => {
+    const credentials: Credentials = {
+      username: 'manager',
+      password: 'manager',
+    };
+    const token: Token = service.login(credentials);
+
+    expect(service.tokenIsValid(token.acessToken)).toBeTruthy();
+  });
+
+  it('should check if token is valid - wrong acess token', () => {
+    expect(service.tokenIsValid('0')).toBeFalsy();
   });
 });

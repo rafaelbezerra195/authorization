@@ -20,10 +20,18 @@ export class AuthorizationService {
     if (hashPassword != process.env.EXAMPLE_PASSWORD)
       throw new BadRequestException('Password is wrong');
 
+    const openSession = this.sessionService.getSessionByUsername(
+      credentials.username,
+    );
+    if (openSession?.token) return openSession.token;
+
     const token = this.tokenService.generate(credentials);
-
     this.sessionService.create(credentials.username, token);
-
     return token;
+  }
+
+  tokenIsValid(acessToken: string) {
+    const session = this.sessionService.getSessionByAcessToken(acessToken);
+    return !!session;
   }
 }
