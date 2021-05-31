@@ -4,6 +4,7 @@ import * as sha256 from 'crypto-js/sha256';
 import * as Base64 from 'crypto-js/enc-base64';
 import { TokenService } from '../token/token.service';
 import { SessionService } from '../session/session.service';
+import { Token } from 'src/token/interface/token.interface';
 
 @Injectable()
 export class AuthorizationService {
@@ -12,7 +13,7 @@ export class AuthorizationService {
     private readonly sessionService: SessionService,
   ) {}
 
-  login(credentials: Credentials) {
+  login(credentials: Credentials): Token {
     if (credentials.username != process.env.EXAMPLE_USERNAME)
       throw new BadRequestException('Unidentified username');
 
@@ -30,7 +31,7 @@ export class AuthorizationService {
     return token;
   }
 
-  tokenIsValid(acessToken: string) {
+  tokenIsValid(acessToken: string): boolean {
     const session = this.sessionService.getSessionByAcessToken(acessToken);
     return !!session;
   }

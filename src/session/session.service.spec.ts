@@ -38,7 +38,7 @@ describe('SessionService', () => {
     expect(session.createdAt).toBeTruthy();
   });
 
-  it('should be push a new session.', () => {
+  it('should push a new session.', () => {
     const session: AuthSession = {
       username: 'admin2',
       token: {
