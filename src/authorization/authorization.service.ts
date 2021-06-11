@@ -5,6 +5,7 @@ import * as Base64 from 'crypto-js/enc-base64';
 import { TokenService } from '../token/token.service';
 import { SessionService } from '../session/session.service';
 import { Token } from 'src/token/interface/token.interface';
+import { isNil } from 'lodash';
 
 @Injectable()
 export class AuthorizationService {
@@ -33,6 +34,25 @@ export class AuthorizationService {
 
   tokenIsValid(acessToken: string): boolean {
     const session = this.sessionService.getSessionByAcessToken(acessToken);
-    return !!session;
+    return !isNil(session);
+  }
+
+  refreshToken(token: Token): Token {
+    const session = this.sessionService.getSessionByAcessToken(
+      token.acessToken,
+    );
+    if (!isNil(session)) return session.token;
+
+    if (isNil(token.refreshToken))
+      throw new BadRequestException('Refresh Token is required.');
+
+    const newAccessToken = this.tokenService.generateAccessToken(
+      token.refreshToken,
+    );
+
+    return {
+      acessToken: newAccessToken,
+      refreshToken: token.refreshToken,
+    };
   }
 }

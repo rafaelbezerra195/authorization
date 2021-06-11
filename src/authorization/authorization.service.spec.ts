@@ -79,4 +79,14 @@ describe('AuthorizationService', () => {
   it('should check if token is valid - wrong acess token', () => {
     expect(service.tokenIsValid('0')).toBeFalsy();
   });
+
+  it('should refresh token when a ', () => {
+    const credentials: Credentials = {
+      username: 'manager',
+      password: 'manager',
+    };
+    const token: Token = service.login(credentials);
+    const newerToken: Token = service.refreshToken(token);
+    expect(token).toEqual(newerToken);
+  });
 });

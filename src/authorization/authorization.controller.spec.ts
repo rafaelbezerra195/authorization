@@ -1,4 +1,7 @@
+import { ConfigModule } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
+import { SessionModule } from '../session/session.module';
+import { TokenModule } from '../token/token.module';
 import { AuthorizationController } from './authorization.controller';
 import { AuthorizationService } from './authorization.service';
 

@@ -1,9 +1,1 @@
-[{
-  "username": "manager",
-  "token": {
-    "acessToken": "2nmUGldi6haYR4NfMvzZcm+AqSCrjFcP+Nd9K4L4bGE=",
-    "refreshToken": "WsSK4Ekphh+wgEjnHRGbqloE9qeT9TTlwniTHEXJGYE="
-  },
-  "createdAt": "2021-05-31T16:38:10.976Z",
-  "updatedAt": "2021-05-31T16:38:10.976Z"
-}]
+[{"username":"admin","token":{"refreshToken":"fdPAd59L2p95PvfYNnbAK/TTrFbDof7BVY/34tOCXqo=","acessToken":"fiwOM0bTTwChDyvB0aQ0jaDYL6x0QlKqXfgT7kOXnk4="},"createdAt":"2021-05-31T20:03:53.085Z","updatedAt":"2021-05-31T20:03:53.085Z"},{"username":"admin2","token":{"acessToken":"1jh23kj1h23jkh1kj2","refreshToken":"1jh23kj1h23jkh1kj2"},"createdAt":"2021-05-31T20:03:53.097Z","updatedAt":"2021-05-31T20:03:53.097Z"},{"username":"manager","token":{"refreshToken":"L9e7BMipPuE39dnotGP2bH3nK6z9wjZxyb2YnSbKY24=","acessToken":"IvAyjmfy3K6rMfX4yIZWaR4ihnunBOLE8HdfqHGmXmw="},"createdAt":"2021-05-31T20:03:53.302Z","updatedAt":"2021-05-31T20:03:53.302Z"}]

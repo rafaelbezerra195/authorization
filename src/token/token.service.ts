@@ -7,14 +7,21 @@ import { Token } from './interface/token.interface';
 @Injectable()
 export class TokenService {
   generate(credentials: Credentials) {
+    const refreshToken = this.generateRefreshToken(credentials);
     const newToken: Token = {
-      acessToken: Base64.stringify(
-        sha256(credentials.username + credentials.password + Date.now()),
-      ),
-      refreshToken: Base64.stringify(
-        sha256(Date.now() + credentials.username + credentials.password),
-      ),
+      refreshToken: refreshToken,
+      acessToken: this.generateAccessToken(refreshToken),
     };
     return newToken;
+  }
+
+  generateRefreshToken(credentials: Credentials) {
+    return Base64.stringify(
+      sha256(Date.now() + credentials.username + credentials.password),
+    );
+  }
+
+  generateAccessToken(refreshToken: string) {
+    return Base64.stringify(sha256(refreshToken + Date.now()));
   }
 }
